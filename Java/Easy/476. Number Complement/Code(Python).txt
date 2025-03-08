@@ -1,0 +1,9 @@
+class Solution(object):
+    def findComplement(self, num):
+        binaryout = ""
+        while (num > 0):
+            rem = num % 2
+            binaryout += str(1 - rem)
+            num //= 2
+        binaryout = int(binaryout[::-1], 2)
+        return binaryout

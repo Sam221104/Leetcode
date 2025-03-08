@@ -1,0 +1,10 @@
+class Solution(object):
+    def firstMissingPositive(self, nums):
+        nums = sorted(nums)
+        x=1
+        for i in nums:
+            if x!=i:
+                continue
+            else:
+                 x+=1
+        return x   

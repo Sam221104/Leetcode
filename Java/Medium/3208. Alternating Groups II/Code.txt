@@ -1,0 +1,21 @@
+//Concept Reference: https://www.youtube.com/watch?v=fvGXV4VzsYQ
+
+class Solution {
+    public int numberOfAlternatingGroups(int[] colors, int k) {
+        
+        int curr_win_len = 1;
+        int count = 0;
+        int n = colors.length;
+        for (int i = 0; i < n+k-2; i++){
+            if(colors[i%n]!=colors[(i+1)%n]){
+                curr_win_len++;
+                if(curr_win_len>=k)
+                    count++;
+            }
+            else
+                curr_win_len = 1;
+        }
+        return count;
+    }
+
+}

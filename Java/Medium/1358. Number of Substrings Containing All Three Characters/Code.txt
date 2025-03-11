@@ -1,0 +1,23 @@
+//Concept Reference: https://www.youtube.com/watch?v=nRFp-olWNrE
+class Solution {
+    public int numberOfSubstrings(String s) {
+        int left = 0;
+        int right = 0;
+        int count = 0;
+        int n = s.length();
+        HashMap<Character, Integer> freq = new HashMap<>();
+        while(right<n){
+            freq.put(s.charAt(right),freq.getOrDefault(s.charAt(right),0)+1);
+            while(freq.size() == 3){
+                count += n - right;
+                freq.put(s.charAt(left), freq.get(s.charAt(left))-1);
+                if (freq.get(s.charAt(left)) == 0){
+                    freq.remove(s.charAt(left));
+                }
+                left++;
+            }
+            right++;
+        }
+        return count;
+    }
+}

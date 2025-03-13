@@ -1,0 +1,26 @@
+//Condept Reference: https://www.youtube.com/watch?v=fQdelRN-0Zs
+class Solution {
+    public int minZeroArray(int[] nums, int[][] queries) {
+        int n = nums.length;
+        int[] line = new int[n + 1];
+        int decrement = 0, k = 0; 
+
+        for (int i = 0; i < n; i++) { 
+            while (decrement + line[i] < nums[i]) {
+                if (k == queries.length) return -1;
+                
+                int leftIndex = queries[k][0];
+                int rightIndex = queries[k][1];
+                int valueIndex = queries[k][2];
+                k++;
+
+                if (rightIndex < i) continue;
+                
+                line[Math.max(leftIndex, i)] += valueIndex; 
+                line[rightIndex + 1] -= valueIndex;
+            }
+            decrement += line[i]; 
+        }
+        return k;
+    }
+}

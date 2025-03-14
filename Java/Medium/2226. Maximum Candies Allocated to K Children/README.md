@@ -29,3 +29,7 @@ Constraints:
 1 <= candies.length <= 105
 1 <= candies[i] <= 107
 1 <= k <= 1012
+
+![image](https://github.com/user-attachments/assets/b19d247d-79c6-4bfe-be0c-523a6a6076d9)
+![image](https://github.com/user-attachments/assets/f030ae87-d79f-4f8c-b3a0-b82fd11ed26b)
+

@@ -1,0 +1,23 @@
+class Solution {
+    public int maximumCandies(int[] candies, long k) {
+        long sum = 0;
+        int max = 0;
+        for (int candy : candies) {
+            sum += candy;
+            max = Math.max(max, candy);
+        }
+        if (sum < k) return 0;
+        int low = 1, high = max;
+        while (low < high) {
+            int mid = (low + high + 1) / 2;
+            long totalPiles = 0;
+            for (int candy : candies) {
+                totalPiles += candy / mid;
+                if (totalPiles >= k) break;
+            }
+            if (totalPiles >= k) low = mid;
+            else high = mid - 1;
+        }
+        return low;
+    }
+}

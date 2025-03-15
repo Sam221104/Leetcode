@@ -15,22 +15,33 @@ Return the minimum capability of the robber out of all the possible ways to stea
 Example 1:
 
 Input: nums = [2,3,5,9], k = 2
+
 Output: 5
+
 Explanation: 
+
 There are three ways to rob at least 2 houses:
 - Rob the houses at indices 0 and 2. Capability is max(nums[0], nums[2]) = 5.
 - Rob the houses at indices 0 and 3. Capability is max(nums[0], nums[3]) = 9.
 - Rob the houses at indices 1 and 3. Capability is max(nums[1], nums[3]) = 9.
+
 Therefore, we return min(5, 9, 9) = 5.
+
 Example 2:
 
 Input: nums = [2,7,9,3,1], k = 2
+
 Output: 2
+
 Explanation: There are 7 ways to rob the houses. The way which leads to minimum capability is to rob the house at index 0 and 4. Return max(nums[0], nums[4]) = 2.
  
+![image](https://github.com/user-attachments/assets/74685a4d-497e-49b1-8bf1-9fe0ba80e973)
+![image](https://github.com/user-attachments/assets/0f0239c3-6626-40cc-9592-7b2e9e0499c0)
 
 Constraints:
 
 1 <= nums.length <= 105
+
 1 <= nums[i] <= 109
+
 1 <= k <= (nums.length + 1)/2

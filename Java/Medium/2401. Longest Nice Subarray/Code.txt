@@ -1,0 +1,23 @@
+//Concept Reference: https://www.youtube.com/watch?v=NYj5B4eGPt4&t=711s
+class Solution {
+    public int longestNiceSubarray(int[] nums) {
+        int curr_sum = 0;
+        int xor_sum = 0;
+        int max_size = 0; 
+        int left = 0;
+        int right = 0;
+   
+        while(right<nums.length){
+                curr_sum += nums[right];
+                xor_sum ^= nums[right];
+                while(xor_sum!=curr_sum){
+                    curr_sum-=nums[left];
+                    xor_sum^=nums[left];
+                    left++;
+                }
+                max_size = Math.max(max_size, (right - left + 1));
+            right++;
+        }
+        return max_size;
+    }
+}

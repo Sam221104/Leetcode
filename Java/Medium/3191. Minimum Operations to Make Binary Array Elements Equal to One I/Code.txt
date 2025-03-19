@@ -1,0 +1,23 @@
+//Concept Reference: https://www.youtube.com/watch?v=477rIny7RSI
+class Solution {
+    public int minOperations(int[] nums) {
+        int n = nums.length;
+        int count = 0;
+        for(int i=0; i<nums.length - 2; i++){
+            if(nums[i] == 1){
+                continue;
+            }
+            flip(nums,i);
+            count++;
+        }
+        if(nums[n-2] == 0 || nums[n-1] == 0){
+            return -1;
+        }
+        return count;
+    }
+    public static void flip(int[] nums, int i){
+        nums[i++]^=1;
+        nums[i++]^=1;
+        nums[i]^=1;
+    }
+}

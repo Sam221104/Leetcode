@@ -21,6 +21,7 @@ Input: n = 5, edges = [[0,1,7],[1,3,7],[1,2,1]], query = [[0,3],[3,4]]
 Output: [1,-1]
 
 Explanation:
+![image](https://github.com/user-attachments/assets/34e50c11-cb48-4222-bb53-6bf2bfe124e1)
 
 
 To achieve the cost of 1 in the first query, we need to move on the following edges: 0->1 (weight 7), 1->2 (weight 1), 2->1 (weight 1), 1->3 (weight 7).
@@ -34,6 +35,7 @@ Input: n = 3, edges = [[0,2,7],[0,1,15],[1,2,6],[1,2,1]], query = [[1,2]]
 Output: [0]
 
 Explanation:
+![image](https://github.com/user-attachments/assets/299b7257-f921-4e23-8a78-a56679d1e9fc)
 
 
 To achieve the cost of 0 in the first query, we need to move on the following edges: 1->2 (weight 1), 2->1 (weight 6), 1->2 (weight 1).

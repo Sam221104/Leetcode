@@ -12,6 +12,8 @@ A connected component is said to be complete if there exists an edge between eve
 
 Example 1:
 
+![image](https://github.com/user-attachments/assets/0584d580-40c3-4fd8-bb4b-722286c3f4e6)
+
 
 
 Input: n = 6, edges = [[0,1],[0,2],[1,2],[3,4]]
@@ -21,6 +23,8 @@ Output: 3
 Explanation: From the picture above, one can see that all of the components of this graph are complete.
 
 Example 2:
+
+![image](https://github.com/user-attachments/assets/26e7c0ef-42f8-4a03-88cb-de8fc7b97d13)
 
 
 
@@ -34,8 +38,13 @@ Explanation: The component containing vertices 0, 1, and 2 is complete since the
 Constraints:
 
 1 <= n <= 50
+
 0 <= edges.length <= n * (n - 1) / 2
+
 edges[i].length == 2
+
 0 <= ai, bi <= n - 1
+
 ai != bi
+
 There are no repeated edges.

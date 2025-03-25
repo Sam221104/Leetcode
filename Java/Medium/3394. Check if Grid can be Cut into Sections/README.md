@@ -20,6 +20,7 @@ Output: true
 
 Explanation:
 
+![image](https://github.com/user-attachments/assets/39a8d599-59b6-44d1-91d7-6a16d9ac5fcd)
 
 
 The grid is shown in the diagram. We can make horizontal cuts at y = 2 and y = 4. Hence, output is true.
@@ -32,6 +33,7 @@ Output: true
 
 Explanation:
 
+![image](https://github.com/user-attachments/assets/f7cc6d1a-84d9-4c93-b372-23ac8c5ca2cf)
 
 
 We can make vertical cuts at x = 2 and x = 3. Hence, output is true.

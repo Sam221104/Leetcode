@@ -8,6 +8,8 @@ Return the minimum number of operations to make the grid uni-value. If it is not
 
 Example 1:
 
+![image](https://github.com/user-attachments/assets/6a1ffab2-1d4a-4e7f-a34e-be39520f7965)
+
 Input: grid = [[2,4],[6,8]], x = 2
 
 Output: 4
@@ -20,6 +22,8 @@ A total of 4 operations were used.
 
 Example 2:
 
+![image](https://github.com/user-attachments/assets/f3a2f48a-5830-49c9-b385-380f86280745)
+
 Input: grid = [[1,5],[2,3]], x = 1
 
 Output: 5
@@ -27,6 +31,8 @@ Output: 5
 Explanation: We can make every element equal to 3.
 
 Example 3:
+
+![image](https://github.com/user-attachments/assets/b876f642-4777-404c-a034-ea11970b3710)
 
 Input: grid = [[1,2],[3,4]], x = 2
 

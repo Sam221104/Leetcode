@@ -14,6 +14,7 @@ Return the resulting array answer.
 
 Example 1:
 
+![image](https://github.com/user-attachments/assets/29d174d3-9a19-47d6-9cac-74ce5a7c601b)
 
 Input: grid = [[1,2,3],[2,5,7],[3,5,1]], queries = [5,6,2]
 
@@ -23,6 +24,7 @@ Explanation: The diagrams above show which cells we visit to get points for each
 
 Example 2:
 
+![image](https://github.com/user-attachments/assets/b64f9ef3-0f25-4218-a759-389d7907d742)
 
 Input: grid = [[5,2,1],[1,1,2]], queries = [3]
 

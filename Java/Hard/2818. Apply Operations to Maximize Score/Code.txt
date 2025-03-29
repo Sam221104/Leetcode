@@ -1,0 +1,182 @@
+//Concept Ref: https://www.youtube.com/watch?v=OJ5gDFA9YMc
+/*class Solution {
+    private static final long MOD = 1000000007;
+
+    private void calculateScore(int[] nums, long[] score) {
+        for (int i = 0; i < nums.length; i++) {
+            int ele = nums[i];
+            long count = 0;
+            for (int j = 2; j * j <= ele; j++) {
+                if (ele % j == 0) {
+                    count++;
+                    while (ele % j == 0) {
+                        ele /= j;
+                    }
+                }
+            }
+            if (ele > 1) count++;
+            score[i] = count;
+        }
+    }
+
+    private void calculateSubarrayCountPerScore(long[] score, long[] subarrayCount) {
+        int n = score.length;
+        int[] pge = new int[n]; // Previous Greater Element
+        Arrays.fill(pge, -1);
+        Deque<Integer> stack = new ArrayDeque<>();
+
+        // Calculate Previous Greater Element (PGE)
+        for (int i = 0; i < n; ++i) {
+            while (!stack.isEmpty() && score[stack.peek()] < score[i]) {
+                stack.pop();
+            }
+            if (!stack.isEmpty()) {
+                pge[i] = stack.peek();
+            }
+            stack.push(i);
+        }
+
+        // Calculate Next Greater Element (NGE) and subarray count
+        stack.clear();
+        for (int i = n - 1; i >= 0; --i) {
+            while (!stack.isEmpty() && score[stack.peek()] <= score[i]) {
+                stack.pop();
+            }
+            int nge = stack.isEmpty() ? n : stack.peek();
+            long count = (long) (nge - i) * (i - (pge[i] == -1 ? -1 : pge[i]));
+            subarrayCount[i] = count % MOD;
+            stack.push(i);
+        }
+    }
+
+    private long binaryExponentiation(long a, long b) {
+        long res = 1;
+        a %= MOD;
+        while (b > 0) {
+            if ((b & 1) == 1) {
+                res = (res * a) % MOD;
+            }
+            a = (a * a) % MOD;
+            b >>= 1;
+        }
+        return res;
+    }
+
+    public int maximumScore(List<Integer> numsList, int k) {
+        int n = numsList.size();
+        int[] nums = new int[n];
+
+        // Convert List<Integer> to int[]
+        for (int i = 0; i < n; i++) {
+            nums[i] = numsList.get(i);
+        }
+
+        return computeMaximumScore(nums, k);  // Call the main logic function
+    }
+
+    private int computeMaximumScore(int[] nums, int k) {
+        int n = nums.length;
+        long[] score = new long[n];
+        calculateScore(nums, score);
+
+        long[] subarrayCount = new long[n];
+        calculateSubarrayCountPerScore(score, subarrayCount);
+
+        // Use a max-heap to prioritize the largest numbers
+        PriorityQueue<int[]> maxHeap = new PriorityQueue<>((a, b) -> b[0] - a[0]);
+        for (int i = 0; i < n; ++i) {
+            maxHeap.offer(new int[]{nums[i], i});
+        }
+
+        long res = 1;
+        while (k > 0 && !maxHeap.isEmpty()) {
+            int[] curr = maxHeap.poll();
+            int num = curr[0];
+            int idx = curr[1];
+            long cnt = Math.min(k, subarrayCount[idx]);
+            res = (res * binaryExponentiation(num, cnt)) % MOD;
+            k -= cnt;
+        }
+        return (int) res;
+    }
+}*/
+
+class Solution {
+    private final int mod = (int) 1e9 + 7;
+
+    public int maximumScore(List<Integer> nums, int k) {
+        int n = nums.size();
+        int[][] arr = new int[n][0];
+        for (int i = 0; i < n; ++i) {
+            arr[i] = new int[] {i, primeFactors(nums.get(i)), nums.get(i)};
+        }
+        int[] left = new int[n];
+        int[] right = new int[n];
+        Arrays.fill(left, -1);
+        Arrays.fill(right, n);
+        Deque<Integer> stk = new ArrayDeque<>();
+        for (int[] e : arr) {
+            int i = e[0], f = e[1];
+            while (!stk.isEmpty() && arr[stk.peek()][1] < f) {
+                stk.pop();
+            }
+            if (!stk.isEmpty()) {
+                left[i] = stk.peek();
+            }
+            stk.push(i);
+        }
+        stk.clear();
+        for (int i = n - 1; i >= 0; --i) {
+            int f = arr[i][1];
+            while (!stk.isEmpty() && arr[stk.peek()][1] <= f) {
+                stk.pop();
+            }
+            if (!stk.isEmpty()) {
+                right[i] = stk.peek();
+            }
+            stk.push(i);
+        }
+        Arrays.sort(arr, (a, b) -> b[2] - a[2]);
+        long ans = 1;
+        for (int[] e : arr) {
+            int i = e[0], x = e[2];
+            int l = left[i], r = right[i];
+            long cnt = (long) (i - l) * (r - i);
+            if (cnt <= k) {
+                ans = ans * qpow(x, cnt) % mod;
+                k -= cnt;
+            } else {
+                ans = ans * qpow(x, k) % mod;
+                break;
+            }
+        }
+        return (int) ans;
+    }
+
+    private int primeFactors(int n) {
+        int i = 2;
+        Set<Integer> ans = new HashSet<>();
+        while (i <= n / i) {
+            while (n % i == 0) {
+                ans.add(i);
+                n /= i;
+            }
+            ++i;
+        }
+        if (n > 1) {
+            ans.add(n);
+        }
+        return ans.size();
+    }
+
+    private int qpow(long a, long n) {
+        long ans = 1;
+        for (; n > 0; n >>= 1) {
+            if ((n & 1) == 1) {
+                ans = ans * a % mod;
+            }
+            a = a * a % mod;
+        }
+        return (int) ans;
+    }
+}

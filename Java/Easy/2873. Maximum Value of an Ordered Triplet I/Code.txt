@@ -1,0 +1,24 @@
+class Solution {
+    public long maximumTripletValue(int[] nums) {
+        long result = 0;
+        long max = 0;
+        for(int i=0; i<nums.length; i++){
+            for(int j=i+1;j<nums.length; j++){
+                for(int k=j+1; k<nums.length; k++){
+                    result =  ((long)(nums[i] - nums[j]) * nums[k]);
+                    System.out.println(result);
+                    
+                    max = Math.max(result, max);
+                }
+            }
+        }
+        return max;
+    }
+}
+
+/*Fix: Correct Typecasting
+Instead of:   result = (long) ((nums[i] - nums[j]) * nums[k]); 
+Use: result = ((long) (nums[i] - nums[j])) * nums[k]; 
+Why?
+(nums[i] - nums[j]) is now cast to long before multiplication, preventing overflow.
+This ensures the multiplication happens in long precision.*/
